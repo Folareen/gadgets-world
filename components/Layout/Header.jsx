@@ -1,6 +1,6 @@
 import { Box, IconButton, Typography } from "@mui/material";
-// import MenuIcon from "@mui/icons-material/Menu";
-// import CloseIcon from "@mui/icons-material/Close";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
