@@ -1,4 +1,4 @@
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, IconButton, Typography, Button } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
@@ -7,49 +7,21 @@ import { useRouter } from "next/router";
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import "@fontsource/kanit";
-
-const linkItems = ["laptops", "phones", "accessories"];
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import linkItems from "../../utils/linkItems";
+import MobileMenu from "./MobileMenu";
+import ManageAccountsRoundedIcon from '@mui/icons-material/ManageAccountsRounded';
+import HistoryRoundedIcon from '@mui/icons-material/HistoryRounded';
+import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
+import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
 
 const isActive = (title, path) => {
   return path === title
 };
 
-const MobileMenu = () => (
-  <Box
-    sx={{
-      height: "100vh",
-      position: "fixed",
-      top: 0,
-      bottom: 0,
-      right: 0,
-      left: 0,
-      display: { xs: "flex", sm: "none" },
-      flexDirection: "column",
-      justifyContent: "space-between",
-      bgcolor: "light.main",
-      color: "primary.main",
-      textAlign: "center",
-      py: 4,
-      alignItems: 'center',
-      justifyContent: 'center',
-      zIndex: 2
-    }}
-  >
-    <Box>
-      {linkItems.map((item) => (
-        <Link href={`/${item}`} key={item}>
-          <Typography sx={{ p: 2, "&:hover": { cursor: "pointer" }, textTransform: 'capitalize' }}>
-            {item}
-          </Typography>
-        </Link>
-      ))}
-    </Box>
-  </Box>
-);
-
-
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showAccountOptions, setShowAccountOptions] = useState(false);
   const {push, query: {productCategoryId}} = useRouter();
 
   return (
@@ -106,12 +78,32 @@ const Header = () => {
       </Box>
 
       <Box >
+        <IconButton onClick={() => {push('/search')}} sx={{color: 'secondary.main'}}>
+          <SearchRoundedIcon />
+        </IconButton>
         <IconButton onClick={() => {push('/cart')}} sx={{color: 'secondary.main'}}>
           <ShoppingCartRoundedIcon />
         </IconButton>
-        <IconButton sx={{color: 'secondary.main', ml: 0.5}}>
-          <AccountCircleRoundedIcon/>
-        </IconButton>
+        <Box sx={{position: 'relative', display: 'inline-block'}}>
+          <IconButton sx={{color: 'secondary.main'}} onClick={() => setShowAccountOptions(!showAccountOptions)}>
+            <AccountCircleRoundedIcon/>
+          </IconButton>
+          {showAccountOptions && 
+          <Box sx={{position: 'absolute',right: 1, width: 'max-content', boxShadow: '0 0 2px rgba(0, 0, 0, 0.2)'}}>
+            {
+              false?
+              <Box sx={{display: 'flex', flexDirection: 'column', backgroundColor: 'light.main', color: 'dark.main', borderRadius: 1}}>
+                <Button sx={{p: 1}}>My Account <ManageAccountsRoundedIcon fontSize={'small'} /> </Button>
+                <Button sx={{p: 1}}>Order History <HistoryRoundedIcon fontSize={'small'} /> </Button>
+                <Button color={'danger'} sx={{p: 1}}>Logout <ExitToAppRoundedIcon fontSize={'small'}/></Button>
+              </Box>
+              :
+              <Button onClick={() => push('/auth')} variant="contained"><LoginRoundedIcon fontSize={'small'} sx={{mr: 1}}/> Login/Signup</Button>
+            }
+          </Box>
+          }
+        </Box>
+
       </Box>
       
     </Box>
