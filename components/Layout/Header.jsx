@@ -22,7 +22,7 @@ const MobileMenu = () => (
       bottom: 0,
       right: 0,
       left: 0,
-      display: { xs: "flex", lg: "none" },
+      display: { xs: "flex", sm: "none" },
       flexDirection: "column",
       justifyContent: "space-between",
       bgcolor: "light.main",
@@ -69,7 +69,7 @@ const Header = () => {
 
       <IconButton
         onClick={() => setShowMobileMenu((prev) => !prev)}
-        sx={{color: 'secondary.main',  display: { xs: "block", lg: "none" }, zIndex: 2}}
+        sx={{color: 'secondary.main',  display: { xs: "block", sm: "none" }, zIndex: 2}}
       >
         {!showMobileMenu ? <MenuIcon /> : <CloseIcon />}
       </IconButton>
@@ -77,13 +77,13 @@ const Header = () => {
       <Link href="/">
         <Typography
           component="h1"
-          sx={{ "&:hover": { cursor: "pointer" }, color: "secondary.main", fontSize: {xs: 18, md: 20}, fontWeight: 'bold',letterSpacing: 1.3,  height: 'max-content', fontFamily: 'kanit' }}
+          sx={{ "&:hover": { cursor: "pointer" }, color: "secondary.main", fontSize: {xs: 18, sm: 20}, fontWeight: 'bold',letterSpacing: 1.3,  height: 'max-content', fontFamily: 'kanit' }}
         >
           Gadgets World
         </Typography>
       </Link>
 
-      <Box sx={{ display: { xs: "none", lg: "flex" } }}>
+      <Box sx={{ display: { xs: "none", sm: "flex" } }}>
         {linkItems.map((item) => (
           <Link href={`/${item}`} key={item}>
             <Typography
