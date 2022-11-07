@@ -4,14 +4,16 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
+import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 
 const linkItems = ["laptops", "phones", "accessories"];
 
 const isActive = (title, path) => {
-  return path.startsWith(`/products/${title}`);
+  return path === title
 };
 
-const MobileMenu = ({ showMobileMenu }) => (
+const MobileMenu = () => (
   <Box
     sx={{
       height: "100vh",
@@ -24,28 +26,18 @@ const MobileMenu = ({ showMobileMenu }) => (
       flexDirection: "column",
       justifyContent: "space-between",
       bgcolor: "light.main",
-      border: 1,
       color: "primary.main",
       textAlign: "center",
       py: 4,
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 2
     }}
   >
-    <IconButton
-      onClick={() => setShowMobileMenu((prev) => !prev)}
-      sx={{ position: "absolute", top: 1, right: 1 }}
-    >
-      {!showMobileMenu && <CloseIcon />}
-    </IconButton>
-
-    <Link href="/">
-      <Typography component="h1" sx={{ "&:hover": { cursor: "pointer" }}}>
-        Meedah Store
-      </Typography>
-    </Link>
     <Box>
       {linkItems.map((item) => (
-        <Link href={`/products/${item}`} key={item}>
-          <Typography sx={{ p: 2, "&:hover": { cursor: "pointer" } }}>
+        <Link href={`/${item}`} key={item}>
+          <Typography sx={{ p: 2, "&:hover": { cursor: "pointer" }, textTransform: 'capitalize' }}>
             {item}
           </Typography>
         </Link>
@@ -54,9 +46,11 @@ const MobileMenu = ({ showMobileMenu }) => (
   </Box>
 );
 
+
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const { pathname } = useRouter();
+  const {push, query: {productCategoryId}} = useRouter();
+
   return (
     <Box
       component="header"
@@ -67,13 +61,15 @@ const Header = () => {
         boxShadow: "0 0 2px 2px rgba(0, 0, 0, 0.3)",
         display: "flex",
         justifyContent: "space-between",
+        alignItems: 'center'
       }}
     >
+      
       {showMobileMenu && <MobileMenu />}
 
       <IconButton
         onClick={() => setShowMobileMenu((prev) => !prev)}
-        sx={{ display: { xs: "block", lg: "none" } }}
+        sx={{color: 'secondary.main',  display: { xs: "block", lg: "none" }, zIndex: 2}}
       >
         {!showMobileMenu ? <MenuIcon /> : <CloseIcon />}
       </IconButton>
@@ -81,23 +77,25 @@ const Header = () => {
       <Link href="/">
         <Typography
           component="h1"
-          sx={{ "&:hover": { cursor: "pointer" }, color: "secondary.main" }}
+          sx={{ "&:hover": { cursor: "pointer" }, color: "secondary.main", fontSize: {xs: 18, md: 20}, fontWeight: 'bold',letterSpacing: 1.3,  height: 'max-content', fontFamily: 'kanit' }}
         >
-          Meedah Store
+          Gadgets World
         </Typography>
       </Link>
 
       <Box sx={{ display: { xs: "none", lg: "flex" } }}>
         {linkItems.map((item) => (
-          <Link href={`/products/${item}`} key={item}>
+          <Link href={`/${item}`} key={item}>
             <Typography
               sx={{
-                color: isActive(item, pathname)
-                  ? "secondary.main"
-                  : "light.main",
+                color: isActive(item, productCategoryId)
+                  ? "light.main"
+                  : "secondary.main",
                 "&:hover": {
                   cursor: "pointer",
+                  color: 'light.main'
                 },
+                px : 1, mx: 1, textTransform: 'capitalize'
               }}
             >
               {item}
@@ -106,7 +104,15 @@ const Header = () => {
         ))}
       </Box>
 
-      <Box>hi</Box>
+      <Box >
+        <IconButton onClick={() => {push('/cart')}} sx={{color: 'secondary.main'}}>
+          <ShoppingCartRoundedIcon />
+        </IconButton>
+        <IconButton sx={{color: 'secondary.main', ml: 0.5}}>
+          <AccountCircleRoundedIcon/>
+        </IconButton>
+      </Box>
+      
     </Box>
   );
 };
