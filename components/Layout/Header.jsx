@@ -81,7 +81,7 @@ const Header = () => {
       <Link href="/">
         <Typography
           component="h1"
-          sx={{ "&:hover": { cursor: "pointer" }, color: "warning.main" }}
+          sx={{ "&:hover": { cursor: "pointer" }, color: "secondary.main" }}
         >
           Meedah Store
         </Typography>

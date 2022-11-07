@@ -15,7 +15,10 @@ const Layout = ({ children }) => {
     >
       <Head>
         <title>Gadgets World</title>
-        <meta name="description" content="Best ecommerce store for gadgets" />
+        <meta
+          name="description"
+          content="Best ecommerce store to shop gadgets"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
