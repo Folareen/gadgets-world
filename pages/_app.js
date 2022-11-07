@@ -11,8 +11,8 @@ function MyApp({ Component, pageProps }) {
       danger: { main: "#E33E5A" },
       warning: { main: "#FFD739" },
       dark: { main: "#00204A" },
-      light: { main: "#effbff" },
-      white: { main: "FFFFFF" },
+      light: { main: "#BAE8E8", light: "#E3F6F5" },
+      white: { main: "EFFBFF" },
     },
     typography: {
       fontFamily: "Signika",
