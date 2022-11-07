@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import "@fontsource/kanit";
 
 const linkItems = ["laptops", "phones", "accessories"];
 
