@@ -63,7 +63,7 @@ const Header = () => {
       <Link href="/">
         <Typography
           component="h1"
-          sx={{ "&:hover": { cursor: "pointer" }, color: "secondary.main", fontSize: {xs: 18, sm: 20}, fontWeight: 'bold',letterSpacing: 1.3,  height: 'max-content', fontFamily: 'kanit' }}
+          sx={{ "&:hover": { cursor: "pointer" }, color: "logo.main", fontSize: {xs: 18, sm: 20}, fontWeight: 'bold',letterSpacing: 1.3,  height: 'max-content', fontFamily: 'kanit' }}
         >
           Gadgets World
         </Typography>
