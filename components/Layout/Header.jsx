@@ -14,6 +14,7 @@ import ManageAccountsRoundedIcon from '@mui/icons-material/ManageAccountsRounded
 import HistoryRoundedIcon from '@mui/icons-material/HistoryRounded';
 import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
+import { auth } from "../../firebase";
 
 const isActive = (title, path) => {
   return path === title
@@ -23,6 +24,18 @@ const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showAccountOptions, setShowAccountOptions] = useState(false);
   const {push, query: {productCategoryId}} = useRouter();
+
+  const logout = async () => {
+    try{
+      await signOut(auth)
+      setUser(null)
+      navigate('/') 
+    }
+    catch{
+      alert('failed to sign out!')
+    }
+  }
+
 
   return (
     <Box
@@ -91,11 +104,11 @@ const Header = () => {
           {showAccountOptions && 
           <Box sx={{position: 'absolute',right: 1, width: 'max-content', boxShadow: '0 0 2px rgba(0, 0, 0, 0.2)'}}>
             {
-              false?
+              true?
               <Box sx={{display: 'flex', flexDirection: 'column', backgroundColor: 'light.main', color: 'dark.main', borderRadius: 1}}>
                 <Button sx={{p: 1}}>My Account <ManageAccountsRoundedIcon fontSize={'small'} /> </Button>
                 <Button sx={{p: 1}}>Order History <HistoryRoundedIcon fontSize={'small'} /> </Button>
-                <Button color={'danger'} sx={{p: 1}}>Logout <ExitToAppRoundedIcon fontSize={'small'}/></Button>
+                <Button color={'danger'} sx={{p: 1}} onClick={logout}>Logout <ExitToAppRoundedIcon fontSize={'small'}/></Button>
               </Box>
               :
               <Button onClick={() => push('/auth')} variant="contained"><LoginRoundedIcon fontSize={'small'} sx={{mr: 1}}/> Login/Signup</Button>
