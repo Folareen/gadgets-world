@@ -2,6 +2,8 @@ import Head from "next/head";
 import Footer from "./Footer";
 import Header from "./Header";
 import { Box } from "@mui/material";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Layout = ({ children }) => {
   return (
@@ -22,6 +24,7 @@ const Layout = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
+      <ToastContainer />
       {children}
       <Footer />
     </Box>
