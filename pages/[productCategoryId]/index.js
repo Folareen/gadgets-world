@@ -1,22 +1,16 @@
-import { useState, useEffect } from "react";
 import { Typography, Box, CircularProgress } from "@mui/material";
 import ProductCard from "../../components/ProductCard";
+import useFetch from "../../hooks/useFetch";
 
 const Category = ({ productCategoryId }) => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { data, loading, error } = useFetch(
+    `http://localhost:1337/api/categories?populate[products][populate][0]=images&filters[name][$eq]=${productCategoryId}`,
+    productCategoryId
+  );
 
-  useEffect(() => {
-    (async () => {
-      setLoading(true);
-      const response = await fetch(
-        `http://localhost:1337/api/categories?populate[products][populate][0]=images&filters[name][$eq]=${productCategoryId}`
-      );
-      const data = await response.json();
-      setProducts(data.data[0]);
-      setLoading(false);
-    })();
-  }, [productCategoryId]);
+  let products;
+
+  if (data) products = data[0];
 
   if (loading) {
     return (
@@ -38,6 +32,9 @@ const Category = ({ productCategoryId }) => {
       </Box>
     );
   }
+
+  if (error)
+    <Typography sx={{ color: "danger.main" }}>Error Occurred...</Typography>;
 
   return (
     <>
