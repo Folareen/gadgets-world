@@ -12,11 +12,11 @@ const ProductCard = ({img_url, title, price, productId, categoryId}) => {
                 <img src={img_url} style={{width: '100%', height: '100%', objectFit: 'cover', borderTopRightRadius: 'inherit', borderTopLeftRadius: 'inherit'}} />
             </Box>
             
-            <Typography sx={{fontSize: 18, color: 'primary.main', textTransform: 'capitalize'}}>
+            <Typography sx={{fontSize: 18, color: 'primary.main', textTransform: 'capitalize', textAlign: 'center'}}>
                 {title}
             </Typography>
 
-            <Typography sx={{color: 'dark.main', fontSize: 16, my: 0.5}}>
+            <Typography sx={{color: 'dark.main', fontSize: 16, my: 0.5, textAlign: 'center'}}>
                 ${formatPrice(price)}
             </Typography>
 
