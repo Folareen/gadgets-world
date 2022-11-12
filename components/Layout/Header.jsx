@@ -29,7 +29,7 @@ const Header = () => {
     try{
       await signOut(auth)
       setUser(null)
-      navigate('/') 
+      push('/') 
     }
     catch{
       alert('failed to sign out!')
