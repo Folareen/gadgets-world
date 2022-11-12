@@ -32,6 +32,7 @@ const Auth = () => {
         minHeight: "100vh",
         left: 0,
         right: 0,
+        zIndex: 1,
       }}
     >
       <Box sx={{ width: "85%", maxWidth: 400 }}>

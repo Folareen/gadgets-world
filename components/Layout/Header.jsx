@@ -47,7 +47,9 @@ const Header = () => {
         boxShadow: "0 0 2px 2px rgba(0, 0, 0, 0.3)",
         display: "flex",
         justifyContent: "space-between",
-        alignItems: 'center'
+        alignItems: 'center',
+        position: 'relative',
+        zIndex: 2
       }}
     >
       
@@ -55,7 +57,7 @@ const Header = () => {
 
       <IconButton
         onClick={() => setShowMobileMenu((prev) => !prev)}
-        sx={{color: 'secondary.main',  display: { xs: "block", sm: "none" }, zIndex: 2}}
+        sx={{color: 'secondary.main',  display: { xs: "block", sm: "none" }, zIndex: 3}}
       >
         {!showMobileMenu ? <MenuIcon /> : <CloseIcon />}
       </IconButton>
