@@ -1,5 +1,27 @@
-const Home = () => {
-  return <div>home</div>;
+import { Box } from "@mui/material";
+import Banner from "../components/Banner";
+import TrendingProducts from "../components/TrendingProducts";
+
+const Home = ({ trendingProducts }) => {
+  return (
+    <Box sx={{ pb: 2 }}>
+      <Banner />
+      <TrendingProducts trendingProducts={trendingProducts} />
+    </Box>
+  );
 };
 
 export default Home;
+
+export const getServerSideProps = async () => {
+  const response = await fetch(
+    "http://localhost:1337/api/categories?populate[products][populate][0]=images"
+  );
+  const data = await response.json();
+
+  return {
+    props: {
+      trendingProducts: data.data,
+    },
+  };
+};
