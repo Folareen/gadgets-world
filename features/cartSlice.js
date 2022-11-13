@@ -1,11 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import formatPrice from "../utils/formatPrice";
 
-let initialState = {
-  products: [],
-  quantity: 0,
-  subTotal: 0.0,
-};
+let initialState;
 
 if (typeof window === "undefined") {
   initialState = {
