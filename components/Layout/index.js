@@ -9,10 +9,14 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { authenticated, authenticating } from "../../features/userSlice";
 import { useEffect } from "react";
+import { getStoredCart } from "../../features/cartSlice";
 
 const Layout = ({ children }) => {
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.user);
+  const {
+    user: { data },
+    cart,
+  } = useSelector((state) => state);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -24,6 +28,15 @@ const Layout = ({ children }) => {
       }
     });
   }, [data]);
+
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart")) || {
+      products: [],
+      quantity: 0,
+      subTotal: 0.0,
+    };
+    dispatch(getStoredCart(storedCart));
+  }, []);
 
   return (
     <Box

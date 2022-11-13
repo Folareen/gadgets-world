@@ -1,26 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 import formatPrice from "../utils/formatPrice";
 
-let initialState;
-
-if (typeof window === "undefined") {
-  initialState = {
-    products: [],
-    quantity: 0,
-    subTotal: 0.0,
-  };
-} else {
-  initialState = JSON.parse(localStorage.getItem("cart")) || {
-    products: [],
-    quantity: 0,
-    subTotal: 0.0,
-  };
-}
+const initialState = {
+  products: [],
+  quantity: 0,
+  subTotal: 0.0,
+};
 
 const cart = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    getStoredCart: (state, action) => {
+      state.products = action.payload.products;
+      state.quantity = action.payload.quantity;
+      state.subTotal = action.payload.subTotal;
+    },
     addProduct: (state, action) => {
       const productToAdd = action.payload.state.products.find((product) => {
         return product.productId == action.payload.productDetails.productId;
@@ -88,5 +83,5 @@ const cart = createSlice({
   },
 });
 
-export const { addProduct, removeProduct } = cart.actions;
+export const { getStoredCart, addProduct, removeProduct } = cart.actions;
 export default cart.reducer;
