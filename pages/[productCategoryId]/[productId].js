@@ -50,7 +50,11 @@ const Product = () => {
             }}
           >
             <ProductGallery images={data.attributes.images.data} />
-            <ProductDetails productDetails={data.attributes} />
+            <ProductDetails
+              productDetails={data.attributes}
+              image={data.attributes.images.data[0].attributes.url}
+              productId={productId}
+            />
           </Box>
 
           <Typography
