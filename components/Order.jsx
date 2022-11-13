@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { addProduct, removeProduct } from "../features/cartSlice";
 
-const AddToCart = ({image, title, price, productId}) => {
+const Order = ({image, title, price, productId, showBuyNow}) => {
     const state = useSelector(state => state.cart)
 
     const [quantity, setQuantity] = useState(state.products.find(
@@ -54,11 +54,15 @@ const AddToCart = ({image, title, price, productId}) => {
 
         <Box sx={{ m: 2, ml: 0}}>
 
-            <Button color="success" variant='contained' sx={{borderRadius: 2, m: 1, ml: 0, px: 2}} onClick={() => {
-                push('/checkout')
-            }}>
-                Buy now <ShoppingBagRoundedIcon fontSize="small" sx={{mx: 1}}/>
-            </Button>
+            {
+                showBuyNow &&
+                <Button color="success" variant='contained' sx={{borderRadius: 2, m: 1, ml: 0, px: 2}} onClick={() => {
+                    push('/checkout')
+                }}>
+                    Buy now <ShoppingBagRoundedIcon fontSize="small" sx={{mx: 1}}/>
+                </Button>
+            }
+
 
             <Button color="success" variant='outlined' sx={{borderRadius: 2, m: 1, px: 2}} onClick={addToCart}>
                 Add to cart <AddShoppingCartRoundedIcon fontSize="small" sx={{mx: 1}} />
@@ -70,4 +74,4 @@ const AddToCart = ({image, title, price, productId}) => {
   )
 }
 
-export default AddToCart
+export default Order

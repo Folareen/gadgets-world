@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material"
-import AddToCart from "./AddToCart"
+import Order from "./Order"
 
 const ProductDetails = ({productDetails: {title, description, price}, image, productId}) => {
   return (
@@ -17,7 +17,7 @@ const ProductDetails = ({productDetails: {title, description, price}, image, pro
             ${price}
         </Typography>
 
-        <AddToCart title={title} price={price} image={image} productId={productId} />
+        <Order title={title} price={price} image={image} productId={productId} showBuyNow={true} />
     </Box>
   )
 }
