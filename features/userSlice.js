@@ -10,12 +10,10 @@ const user = createSlice({
   reducers: {
     authenticating: (state) => {
       state.loading = true;
-      console.log("loading...");
     },
     authenticated: (state, action) => {
       state.data = action.payload;
       state.loading = false;
-      console.log(action.payload);
     },
   },
 });
