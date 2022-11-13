@@ -1,4 +1,4 @@
-import { Box, IconButton, Typography, Button } from "@mui/material";
+import { Box, IconButton, Typography, Button, Avatar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
@@ -15,6 +15,9 @@ import HistoryRoundedIcon from '@mui/icons-material/HistoryRounded';
 import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
 import { auth } from "../../firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { signOut } from "firebase/auth";
+import { logout } from "../../features/userSlice";
 
 const isActive = (title, path) => {
   return path === title
@@ -24,18 +27,17 @@ const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showAccountOptions, setShowAccountOptions] = useState(false);
   const {push, query: {productCategoryId}} = useRouter();
-
+  const {data, loading} = useSelector(state => state.user )
+  
   const logout = async () => {
     try{
       await signOut(auth)
-      setUser(null)
       push('/') 
     }
-    catch{
+    catch(error){
       alert('failed to sign out!')
     }
   }
-
 
   return (
     <Box
@@ -93,27 +95,55 @@ const Header = () => {
       </Box>
 
       <Box >
-        <IconButton onClick={() => {push('/search')}} sx={{color: 'secondary.main'}}>
+        <IconButton onClick={() => {
+          push('/search')
+          setShowAccountOptions(false)
+          }} sx={{color: 'secondary.main'}}>
           <SearchRoundedIcon />
         </IconButton>
-        <IconButton onClick={() => {push('/cart')}} sx={{color: 'secondary.main'}}>
+        <IconButton onClick={() => {
+          push('/cart')
+          setShowAccountOptions(false)
+          }} sx={{color: 'secondary.main'}}>
           <ShoppingCartRoundedIcon />
         </IconButton>
         <Box sx={{position: 'relative', display: 'inline-block'}}>
           <IconButton sx={{color: 'secondary.main'}} onClick={() => setShowAccountOptions(!showAccountOptions)}>
-            <AccountCircleRoundedIcon/>
+            {
+              data?.photoURL ?
+              <Avatar sx={{width: '28px', height: '28px'}} src={data?.photoURL} />
+              :
+              <AccountCircleRoundedIcon/>
+            }
           </IconButton>
           {showAccountOptions && 
           <Box sx={{position: 'absolute',right: 1, width: 'max-content', boxShadow: '0 0 2px rgba(0, 0, 0, 0.2)'}}>
-            {
-              true?
+            { (!loading) ?
+            <>
+              {
+              data?
               <Box sx={{display: 'flex', flexDirection: 'column', backgroundColor: 'light.main', color: 'dark.main', borderRadius: 1}}>
-                <Button sx={{p: 1}}>My Account <ManageAccountsRoundedIcon fontSize={'small'} /> </Button>
-                <Button sx={{p: 1}}>Order History <HistoryRoundedIcon fontSize={'small'} /> </Button>
+                <Button sx={{p: 1}} onClick={() => {
+                  push('/account')
+                  setShowAccountOptions(false)
+                  }}>My Account <ManageAccountsRoundedIcon fontSize={'small'} /> </Button>
+                <Button sx={{p: 1}} onClick={() => {
+                  push('/order-history')
+                  setShowAccountOptions(false)
+                  }}>Order History <HistoryRoundedIcon fontSize={'small'} /> </Button>
                 <Button color={'danger'} sx={{p: 1}} onClick={logout}>Logout <ExitToAppRoundedIcon fontSize={'small'}/></Button>
               </Box>
               :
-              <Button onClick={() => push('/auth')} variant="contained"><LoginRoundedIcon fontSize={'small'} sx={{mr: 1}}/> Login/Signup</Button>
+              <Button onClick={() => {
+                push('/auth')
+                setShowAccountOptions(false)
+              }} variant="contained"><LoginRoundedIcon fontSize={'small'} sx={{mr: 1}}/> Login/Signup</Button>
+              }
+            </>
+            :
+            <Typography>
+              loading...
+            </Typography>
             }
           </Box>
           }
