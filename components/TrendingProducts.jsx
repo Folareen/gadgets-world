@@ -14,7 +14,7 @@ const TrendingProducts = ({trendingProducts}) => {
             trendingProducts.map(
                 ({attributes}) => {
                     return(
-                        <>
+                        <Box key={attributes.name}>
                             <Typography sx={{fontSize: 20, mt: 2, textTransform: 'capitalize', color: 'dark.main' }}>
                                 {attributes.name}
                             </Typography>
@@ -27,7 +27,7 @@ const TrendingProducts = ({trendingProducts}) => {
                                 )
                             }
                             </Box>
-                        </>
+                        </Box>
                     )
                 }
             )
