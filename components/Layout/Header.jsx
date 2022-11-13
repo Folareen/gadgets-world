@@ -27,7 +27,7 @@ const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showAccountOptions, setShowAccountOptions] = useState(false);
   const {push, query: {productCategoryId}} = useRouter();
-  const {data, loading} = useSelector(state => state.user )
+  const {user: {data, loading}, cart} = useSelector(state => state )
   
   const logout = async () => {
     try{
@@ -101,12 +101,18 @@ const Header = () => {
           }} sx={{color: 'secondary.main'}}>
           <SearchRoundedIcon />
         </IconButton>
-        <IconButton onClick={() => {
-          push('/cart')
-          setShowAccountOptions(false)
-          }} sx={{color: 'secondary.main'}}>
-          <ShoppingCartRoundedIcon />
-        </IconButton>
+        <Box sx={{position: 'relative', display: 'inline-block'}}>
+          <IconButton onClick={() => {
+            push('/cart')
+            setShowAccountOptions(false)
+            }} sx={{color: 'secondary.main'}}>
+            <ShoppingCartRoundedIcon />
+          </IconButton> 
+          <Typography sx={{position: 'absolute', top: 0, right: 0, bgcolor: 'light.main',px: 0.6, borderRadius: '50%', fontSize: 12, color: 'dark.main'}}>
+            {cart.quantity}
+          </Typography>     
+        </Box>
+
         <Box sx={{position: 'relative', display: 'inline-block'}}>
           <IconButton sx={{color: 'secondary.main'}} onClick={() => setShowAccountOptions(!showAccountOptions)}>
             {
