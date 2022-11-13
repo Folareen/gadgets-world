@@ -1,16 +1,17 @@
 import { Button, Box, Typography, Container, Link } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Login from "../components/Login";
 import Signup from "../components/Signup";
 import { signInWithPopup } from "firebase/auth";
 import { auth } from "../firebase";
 import { GoogleAuthProvider } from "firebase/auth";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 const Auth = () => {
   const [hasAccount, setHasAccount] = useState(true);
-
-  const { push } = useRouter();
+  const { push, replace } = useRouter();
+  const { data } = useSelector((state) => state.user);
 
   const signIn = () => {
     const provider = new GoogleAuthProvider();
@@ -18,6 +19,12 @@ const Auth = () => {
       push("/");
     });
   };
+
+  useEffect(() => {
+    if (data) {
+      replace("/");
+    }
+  }, []);
 
   return (
     <Box
