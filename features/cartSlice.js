@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import formatPrice from "../utils/formatPrice";
 
 let initialState = {
   products: [],
@@ -45,14 +46,14 @@ const cart = createSlice({
             action.payload.state.quantity +
             action.payload.productDetails.quantity -
             productToAdd.quantity,
-          subTotal: (
+          subTotal: formatPrice(
             Number(action.payload.state.subTotal) -
-            Number(productToAdd.quantity * productToAdd.price) +
-            Number(
-              action.payload.productDetails.quantity *
-                action.payload.productDetails.price
-            )
-          ).toFixed(2),
+              Number(productToAdd.quantity * productToAdd.price) +
+              Number(
+                action.payload.productDetails.quantity *
+                  action.payload.productDetails.price
+              )
+          ),
         };
         state.products = newCart.products;
         state.quantity = newCart.quantity;
@@ -69,13 +70,13 @@ const cart = createSlice({
           quantity:
             action.payload.productDetails.quantity +
             action.payload.state.quantity,
-          subTotal: (
+          subTotal: formatPrice(
             Number(action.payload.state.subTotal) +
-            Number(
-              action.payload.productDetails.quantity *
-                action.payload.productDetails.price
-            )
-          ).toFixed(),
+              Number(
+                action.payload.productDetails.quantity *
+                  action.payload.productDetails.price
+              )
+          ),
         };
         state.products = newCart.products;
         state.quantity = newCart.quantity;
