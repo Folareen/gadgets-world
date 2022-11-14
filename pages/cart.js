@@ -22,7 +22,6 @@ const Cart = () => {
           <ArrowBackRoundedIcon sx={{ color: "dark.main" }} />
         </IconButton>
         <Typography
-          sx={{}}
           sx={{
             color: "dark.main",
             textAlign: "center",
@@ -104,7 +103,6 @@ const Cart = () => {
                 title={title}
                 price={price}
                 quantity={quantity}
-                productId={productId}
               />
             </Box>
           </Box>
