@@ -2,7 +2,7 @@ import linkItems from "../../utils/linkItems";
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 
-const MobileMenu = () => (
+const MobileMenu = ({setShowMobileMenu}) => (
   <Box
     sx={{
       height: "100vh",
@@ -25,8 +25,8 @@ const MobileMenu = () => (
   >
     <Box>
       {linkItems.map((item) => (
-        <Link href={`/${item}`} key={item}>
-          <Typography sx={{ p: 2, "&:hover": { cursor: "pointer" }, textTransform: 'capitalize' }}>
+        <Link href={`/${item}`} key={item} >
+          <Typography sx={{ p: 2, "&:hover": { cursor: "pointer" }, textTransform: 'capitalize' }} onClick={() => setShowMobileMenu(false)}>
             {item}
           </Typography>
         </Link>
