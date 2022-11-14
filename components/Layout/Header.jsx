@@ -55,7 +55,7 @@ const Header = () => {
       }}
     >
       
-      {showMobileMenu && <MobileMenu />}
+      {showMobileMenu && <MobileMenu setShowMobileMenu={setShowMobileMenu} />}
 
       <IconButton
         onClick={() => setShowMobileMenu((prev) => !prev)}
@@ -108,7 +108,7 @@ const Header = () => {
             }} sx={{color: 'secondary.main'}}>
             <ShoppingCartRoundedIcon />
           </IconButton> 
-          <Typography sx={{position: 'absolute', top: 0, right: 0, bgcolor: 'light.main',px: 0.6, borderRadius: '50%', fontSize: 12, color: 'dark.main'}}>
+          <Typography sx={{position: 'absolute', top: 0, right: 0, bgcolor: 'light.main',px: 0.5, borderRadius: '50%', fontSize: 12, color: 'dark.main'}}>
             {cart.quantity}
           </Typography>     
         </Box>
