@@ -9,7 +9,7 @@ const OrderHistory = () => {
 
   useEffect(() => {
     if (!data) {
-      replace("/");
+      replace("/auth");
     }
   }, []);
 

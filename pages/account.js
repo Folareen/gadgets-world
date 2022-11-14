@@ -9,7 +9,7 @@ const Account = () => {
 
   useEffect(() => {
     if (!data) {
-      replace("/");
+      replace("/auth");
     }
   }, []);
 
