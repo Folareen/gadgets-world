@@ -9,7 +9,7 @@ import ShoppingCartCheckoutRoundedIcon from "@mui/icons-material/ShoppingCartChe
 
 const Cart = () => {
   const state = useSelector((state) => state.cart);
-  const { back } = useRouter();
+  const { back, push } = useRouter();
 
   if (state.products.length == 0) {
     return <Typography>Cart is Empty</Typography>;
@@ -124,11 +124,15 @@ const Cart = () => {
           width: "max-content",
           alignItems: "center",
           my: 2,
+          px: 3,
         }}
         color="success"
+        onClick={() => {
+          push("/checkout");
+        }}
       >
-        Checkout{" "}
-        <ShoppingCartCheckoutRoundedIcon fontSize="small" sx={{ ml: 1 }} />
+        Checkout
+        <ShoppingCartCheckoutRoundedIcon fontSize="small" sx={{ ml: 2 }} />
       </Button>
     </Box>
   );
