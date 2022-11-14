@@ -53,7 +53,7 @@ const Layout = ({ children }) => {
           name="description"
           content="Best ecommerce store to shop gadgets"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/microchip-solid.svg" />
       </Head>
       <Header />
       <ToastContainer />
