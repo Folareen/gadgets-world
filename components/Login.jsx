@@ -19,7 +19,6 @@ const Login = () => {
   const login = async (e) =>{
     e.preventDefault()
     setLoginLoading(true)
-    console.log('login')
 
     try{
       const userCredential = await signInWithEmailAndPassword(auth, email, password )

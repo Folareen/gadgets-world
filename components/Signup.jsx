@@ -27,7 +27,6 @@ const Signup = () => {
     setUser(userCredential)
     await updateProfile(auth.currentUser, {
     displayName: name})
-    console.log({email, password})
     }
     catch(err){
       toast.error(formatErrorMessage(err.message))
