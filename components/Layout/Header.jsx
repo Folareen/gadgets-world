@@ -32,7 +32,6 @@ const Header = () => {
   const logout = async () => {
     try{
       await signOut(auth)
-      push('/') 
     }
     catch(error){
       alert('failed to sign out!')
