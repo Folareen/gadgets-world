@@ -18,12 +18,17 @@ const Cart = () => {
   return (
     <Box>
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        <IconButton onClick={() => back()} sx={{ mr: 1 }}>
+        <IconButton onClick={() => back()} sx={{ mr: 2 }}>
           <ArrowBackRoundedIcon sx={{ color: "dark.main" }} />
         </IconButton>
         <Typography
           sx={{}}
-          sx={{ color: "dark.main", textAlign: "center", flex: 1 }}
+          sx={{
+            color: "dark.main",
+            textAlign: "center",
+            flex: 1,
+            fontSize: 18,
+          }}
         >
           Cart ({`${state.quantity} items`})
         </Typography>
@@ -37,7 +42,8 @@ const Cart = () => {
               mx: "auto",
               my: 2,
               height: "max-content",
-              width: "max-content",
+              width: { xs: "max-content", sm: "90%" },
+              maxWidth: { sm: "900px" },
               p: 2,
               boxShadow: "0 0 1px 1px rgba(0, 0, 0, 0.1)",
             }}
@@ -60,12 +66,22 @@ const Cart = () => {
                 }}
               />
             </Box>
-            <Box sx={{ ml: 2 }}>
+            <Box
+              sx={{
+                ml: 2,
+                display: {
+                  sm: "flex",
+                  alignItems: "center",
+                  flex: 1,
+                  justifyContent: "space-between",
+                },
+              }}
+            >
               <Typography
                 sx={{
                   color: "dark.main",
                   textTransform: "capitalize",
-                  mt: { sm: 1.5, xs: 0.5 },
+                  mt: { sm: 0.5 },
                   fontSize: { xs: 16, sm: 20 },
                 }}
               >
@@ -73,7 +89,7 @@ const Cart = () => {
               </Typography>
               <Typography
                 sx={{
-                  mb: { xs: 1, sm: 4 },
+                  mb: { xs: 1 },
                   mt: { sm: 1.5, xs: 0.5 },
                   fontSize: { xs: 15, sm: 19 },
                   color: "dark.main",
