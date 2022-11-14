@@ -41,7 +41,7 @@ const CartOrder = ({ image, title, price, productId }) => {
                 state,
               })
             );
-            toast.success(`${quantity()} ${title} added to cart.`);
+            // toast.success(`${quantity()} ${title} added to cart.`);
           }}
           color="success"
           sx={{ border: "0.5px solid grey", p: { xs: 0.5, sm: 1 } }}
@@ -77,7 +77,7 @@ const CartOrder = ({ image, title, price, productId }) => {
                   state,
                 })
               );
-              toast.error(`${quantity() - newQuantity} ${title} removed from cart`)
+            //   toast.error(`${quantity() - newQuantity} ${title} removed from cart`)
             }
           }}
           color="error"
@@ -97,6 +97,7 @@ const CartOrder = ({ image, title, price, productId }) => {
                     quantity: quantity()
                 },state
             }))
+            toast.error(`${title} removed from cart`)
         }}
       >
         <ClearRoundedIcon fontSize="small" />
