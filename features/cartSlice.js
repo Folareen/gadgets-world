@@ -28,8 +28,7 @@ const cart = createSlice({
           }
         );
         let productsArr = [...action.payload.state.products];
-        productsArr.splice(productToAddIndex, 1);
-        productsArr.push(action.payload.productDetails);
+        productsArr[productToAddIndex] = action.payload.productDetails;
 
         const newCart = {
           products: productsArr,
