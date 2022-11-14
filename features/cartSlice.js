@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import formatPrice from "../utils/formatPrice";
 
 const initialState = {
   products: [],
@@ -36,14 +35,14 @@ const cart = createSlice({
             action.payload.state.quantity +
             action.payload.productDetails.quantity -
             productToAdd.quantity,
-          subTotal: formatPrice(
+          subTotal: (
             Number(action.payload.state.subTotal) -
-              Number(productToAdd.quantity * productToAdd.price) +
-              Number(
-                action.payload.productDetails.quantity *
-                  action.payload.productDetails.price
-              )
-          ),
+            Number(productToAdd.quantity * productToAdd.price) +
+            Number(
+              action.payload.productDetails.quantity *
+                action.payload.productDetails.price
+            )
+          ).toFixed(2),
         };
         state.products = newCart.products;
         state.quantity = newCart.quantity;
@@ -60,13 +59,13 @@ const cart = createSlice({
           quantity:
             action.payload.productDetails.quantity +
             action.payload.state.quantity,
-          subTotal: formatPrice(
+          subTotal: (
             Number(action.payload.state.subTotal) +
-              Number(
-                action.payload.productDetails.quantity *
-                  action.payload.productDetails.price
-              )
-          ),
+            Number(
+              action.payload.productDetails.quantity *
+                action.payload.productDetails.price
+            )
+          ).toFixed(2),
         };
         state.products = newCart.products;
         state.quantity = newCart.quantity;
@@ -92,10 +91,10 @@ const cart = createSlice({
       const newCart = {
         products: productsArr,
         quantity: action.payload.state.quantity - productToRemove.quantity,
-        subTotal: formatPrice(
+        subTotal: (
           Number(action.payload.state.subTotal) -
-            Number(productToRemove.quantity * productToRemove.price)
-        ),
+          Number(productToRemove.quantity * productToRemove.price)
+        ).toFixed(2),
       };
       state.products = newCart.products;
       state.quantity = newCart.quantity;
