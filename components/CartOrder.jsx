@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import { toast } from "react-toastify";
-import { addProduct } from "../features/cartSlice";
+import { addProduct, removeProduct } from "../features/cartSlice";
 
 const CartOrder = ({ image, title, price, productId }) => {
   const state = useSelector((state) => state.cart);
@@ -87,7 +87,18 @@ const CartOrder = ({ image, title, price, productId }) => {
         </IconButton>
       </Box>
 
-      <IconButton sx={{ color: "red", p: { xs: 0.5, sm: 1 }, ml: 4 }}>
+      <IconButton sx={{ color: "red", p: { xs: 0.5, sm: 1 }, ml: 4 }}
+        onClick={()=> {
+            dispatch(removeProduct({
+                productDetails: {
+                    productId,
+                    title,
+                    price,
+                    quantity: quantity()
+                },state
+            }))
+        }}
+      >
         <ClearRoundedIcon fontSize="small" />
       </IconButton>
     </Box>

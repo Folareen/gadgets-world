@@ -77,7 +77,32 @@ const cart = createSlice({
       }
     },
     removeProduct: (state, action) => {
-      console.log("remove product");
+      const productToRemove = action.payload.state.products.find((product) => {
+        return product.productId == action.payload.productDetails.productId;
+      });
+
+      const productToRemoveIndex = action.payload.state.products.findIndex(
+        (product) => {
+          return product.productId == action.payload.productDetails.productId;
+        }
+      );
+      let productsArr = [...action.payload.state.products];
+      productsArr.splice(productToRemoveIndex, 1);
+
+      const newCart = {
+        products: productsArr,
+        quantity: action.payload.state.quantity - productToRemove.quantity,
+        subTotal: formatPrice(
+          Number(action.payload.state.subTotal) -
+            Number(productToRemove.quantity * productToRemove.price)
+        ),
+      };
+      state.products = newCart.products;
+      state.quantity = newCart.quantity;
+      state.subTotal = newCart.subTotal;
+
+      localStorage.removeItem("cart");
+      localStorage.setItem("cart", JSON.stringify(newCart));
     },
   },
 });
