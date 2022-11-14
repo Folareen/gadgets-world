@@ -15,9 +15,8 @@ import HistoryRoundedIcon from '@mui/icons-material/HistoryRounded';
 import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
 import { auth } from "../../firebase";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { signOut } from "firebase/auth";
-import { logout } from "../../features/userSlice";
 
 const isActive = (title, path) => {
   return path === title
@@ -32,6 +31,7 @@ const Header = () => {
   const logout = async () => {
     try{
       await signOut(auth)
+      push('/') 
     }
     catch(error){
       alert('failed to sign out!')
