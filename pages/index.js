@@ -15,7 +15,7 @@ export default Home;
 
 export const getServerSideProps = async () => {
   const response = await fetch(
-    "http://localhost:1337/api/categories?populate[products][populate][0]=images"
+    `${process.env.BASE_URL}/api/categories?populate[products][populate][0]=images`
   );
   const data = await response.json();
 

@@ -5,13 +5,13 @@ import ProductDetails from "../../components/ProductDetails";
 import SuggestedProducts from "../../components/SuggestedProducts";
 import useFetch from "../../hooks/useFetch";
 
-const Product = () => {
+const Product = ({ baseUrl }) => {
   const {
     query: { productId, productCategoryId },
   } = useRouter();
 
   const { data, loading, error } = useFetch(
-    `http://localhost:1337/api/products/${productId}?populate=*`,
+    `${baseUrl}/api/products/${productId}?populate=*`,
     productId
   );
 
@@ -78,3 +78,11 @@ const Product = () => {
 };
 
 export default Product;
+
+export const getServerSideProps = async () => {
+  return {
+    props: {
+      baseUrl: process.env.BASE_URL,
+    },
+  };
+};

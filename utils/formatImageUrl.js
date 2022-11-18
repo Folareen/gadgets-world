@@ -1,4 +1,4 @@
 const formatImageUrl = (rawUrl) => {
-  return `http://localhost:1337${rawUrl}`;
+  return `${process.env.BASE_URL}${rawUrl}`;
 };
 export default formatImageUrl;

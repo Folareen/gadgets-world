@@ -2,9 +2,9 @@ import { Typography, Box, CircularProgress } from "@mui/material";
 import ProductCard from "../../components/ProductCard";
 import useFetch from "../../hooks/useFetch";
 
-const Category = ({ productCategoryId }) => {
+const Category = ({ productCategoryId, baseUrl }) => {
   const { data, loading, error } = useFetch(
-    `http://localhost:1337/api/categories?populate[products][populate][0]=images&filters[name][$eq]=${productCategoryId}`,
+    `${baseUrl}/api/categories?populate[products][populate][0]=images&filters[name][$eq]=${productCategoryId}`,
     productCategoryId
   );
 
@@ -76,6 +76,7 @@ export const getStaticProps = async ({ params }) => {
   return {
     props: {
       productCategoryId: params.productCategoryId,
+      baseUrl: process.env.BASE_URL,
     },
   };
 };
