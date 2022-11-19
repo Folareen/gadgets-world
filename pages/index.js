@@ -2,11 +2,11 @@ import { Box } from "@mui/material";
 import Banner from "../components/Banner";
 import TrendingProducts from "../components/TrendingProducts";
 
-const Home = ({ trendingProducts }) => {
+const Home = ({ trendingProducts, baseUrl }) => {
   return (
     <Box sx={{ pb: 2 }}>
       <Banner />
-      <TrendingProducts trendingProducts={trendingProducts} />
+      <TrendingProducts trendingProducts={trendingProducts} baseUrl={baseUrl} />
     </Box>
   );
 };
@@ -22,6 +22,7 @@ export const getServerSideProps = async () => {
   return {
     props: {
       trendingProducts: data.data,
+      baseUrl: process.env.BASE_URL,
     },
   };
 };

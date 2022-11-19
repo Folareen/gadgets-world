@@ -49,7 +49,10 @@ const Product = ({ baseUrl }) => {
               flexDirection: { xs: "column", md: "row" },
             }}
           >
-            <ProductGallery images={data.attributes.images.data} />
+            <ProductGallery
+              images={data.attributes.images.data}
+              baseUrl={baseUrl}
+            />
             <ProductDetails
               productDetails={data.attributes}
               image={data.attributes.images.data[0].attributes.url}

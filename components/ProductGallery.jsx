@@ -2,8 +2,10 @@ import { Box } from "@mui/material"
 import { useState } from "react"
 import formatImageUrl from "../utils/formatImageUrl"
 
-const ProductGallery = ({images}) => {
-    const [imageInView, setImageInView] = useState(formatImageUrl(images[0].attributes.url))
+const ProductGallery = ({images, baseUrl}) => {
+    const [imageInView, setImageInView] = useState(formatImageUrl(baseUrl, images[0].attributes.url))
+
+    console.log(imageInView)
 
   return (
     <Box sx={{ p: 2, width: {sx: '100%', md: '500px'}}}>
@@ -17,13 +19,13 @@ const ProductGallery = ({images}) => {
                 images.map(
                     ({attributes:{url}}) => {
                         return (
-                            <Box onClick={() => setImageInView(formatImageUrl(url))} key={url} sx={{width: {xs: '70px', md: '80px'}, height: {xs: '70px', md: '80px'}, borderRadius: 2, opacity: (
-                                formatImageUrl(url) === imageInView ? 1 : 0.6
+                            <Box onClick={() => setImageInView(formatImageUrl(baseUrl, url))} key={url} sx={{width: {xs: '70px', md: '80px'}, height: {xs: '70px', md: '80px'}, borderRadius: 2, opacity: (
+                                formatImageUrl(baseUrl, url) === imageInView ? 1 : 0.6
                             ), '&:hover': {
                                 cursor: 'pointer', opacity: 1
                             }}}>
 
-                                <img src={formatImageUrl(url)} style={{width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit'}}  />
+                                <img src={formatImageUrl(baseUrl, url)} style={{width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit'}}  />
                             </Box>
                         )
                     }
