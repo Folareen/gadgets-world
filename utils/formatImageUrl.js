@@ -1,4 +1,4 @@
-const formatImageUrl = (rawUrl) => {
-  return `${process.env.BASE_URL}${rawUrl}`;
+const formatImageUrl = (baseUrl, rawUrl) => {
+  return `${baseUrl}${rawUrl}`;
 };
 export default formatImageUrl;
