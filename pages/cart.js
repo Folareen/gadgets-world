@@ -1,6 +1,6 @@
 import { Box, Button, IconButton, Typography } from "@mui/material";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import CartOrder from "../components/CartOrder";
 import formatImageUrl from "../utils/formatImageUrl";
 import formatPrice from "../utils/formatPrice";
@@ -8,10 +8,13 @@ import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import ShoppingCartCheckoutRoundedIcon from "@mui/icons-material/ShoppingCartCheckoutRounded";
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import ProductionQuantityLimitsRoundedIcon from "@mui/icons-material/ProductionQuantityLimitsRounded";
+import { clearCart } from "../features/cartSlice";
+import { toast } from "react-toastify";
 
 const Cart = ({ baseUrl }) => {
   const state = useSelector((state) => state.cart);
   const { back, push } = useRouter();
+  const dispatch = useDispatch();
 
   return (
     <Box>
@@ -30,7 +33,14 @@ const Cart = ({ baseUrl }) => {
           Cart ({`${state.quantity || 0} items`})
         </Typography>
         {state.products.length !== 0 && (
-          <Button variant="outlined" color="danger">
+          <Button
+            variant="outlined"
+            color="danger"
+            onClick={() => {
+              dispatch(clearCart());
+              toast.info("Cart cleared!");
+            }}
+          >
             Clear cart <ClearRoundedIcon />
           </Button>
         )}
