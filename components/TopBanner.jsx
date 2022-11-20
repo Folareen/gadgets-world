@@ -1,7 +1,7 @@
 import { Box, Paper, Typography } from "@mui/material";
 import excited_man from "../assets/excited-man.png";
 
-const Banner = () => {
+const TopBanner = () => {
   return (
     <Paper
       sx={{
@@ -62,4 +62,4 @@ const Banner = () => {
   )
 }
 
-export default Banner
+export default TopBanner
