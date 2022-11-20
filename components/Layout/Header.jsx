@@ -17,8 +17,12 @@ import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
 import { auth } from "../../firebase";
 import { useSelector } from "react-redux";
 import { signOut } from "firebase/auth";
+import Search from "./Search";
 
 const isActive = (title, path) => {
+  if(path[0] === '/'){
+    return path === path.substring(1, path.length)
+  }
   return path === title
 };
 
@@ -26,6 +30,7 @@ const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showAccountOptions, setShowAccountOptions] = useState(false);
   const {push, query: {productCategoryId}} = useRouter();
+  const router = useRouter();
   const {user: {data, loading}, cart} = useSelector(state => state )
   
   const logout = async () => {
@@ -46,115 +51,123 @@ const Header = () => {
         color: "light.main",
         p: 2,
         boxShadow: "0 0 2px 2px rgba(0, 0, 0, 0.3)",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: 'center',
         position: 'relative',
         zIndex: 3
       }}
     >
-      
-      {showMobileMenu && <MobileMenu setShowMobileMenu={setShowMobileMenu} />}
 
-      <IconButton
-        onClick={() => setShowMobileMenu((prev) => !prev)}
-        sx={{color: 'secondary.main',  display: { xs: "block", sm: "none" }, zIndex: 3}}
-      >
-        {!showMobileMenu ? <MenuIcon /> : <CloseIcon />}
-      </IconButton>
+      <Box sx={{display: "flex",
+        justifyContent: "space-between",
+        alignItems: 'center',}}>
 
-      <Link href="/">
-        <Typography
-          component="h1"
-          sx={{ "&:hover": { cursor: "pointer" }, color: "logo.main", fontSize: {xs: 18, sm: 20}, fontWeight: 'bold',letterSpacing: 1.3,  height: 'max-content', fontFamily: 'kanit' }}
+        <MobileMenu setShowMobileMenu={setShowMobileMenu} showMobileMenu={showMobileMenu} />
+
+        <IconButton
+          onClick={() => setShowMobileMenu((prev) => !prev)}
+          sx={{color: 'secondary.main',  display: { xs: "block", sm: "none" }, zIndex: 3}}
         >
-          Gadgets World
-        </Typography>
-      </Link>
-
-      <Box sx={{ display: { xs: "none", sm: "flex" } }}>
-        {linkItems.map((item) => (
-          <Link href={`/${item}`} key={item}>
-            <Typography
-              sx={{
-                color: isActive(item, productCategoryId)
-                  ? "light.main"
-                  : "secondary.main",
-                "&:hover": {
-                  cursor: "pointer",
-                  color: 'light.main'
-                },
-                px : 1, mx: 1, textTransform: 'capitalize'
-              }}
-            >
-              {item}
-            </Typography>
-          </Link>
-        ))}
-      </Box>
-
-      <Box >
-        <IconButton onClick={() => {
-          push('/search')
-          setShowAccountOptions(false)
-          }} sx={{color: 'secondary.main'}}>
-          <SearchRoundedIcon />
+          {!showMobileMenu ? <MenuIcon /> : <CloseIcon />}
         </IconButton>
-        <Box sx={{position: 'relative', display: 'inline-block'}}>
+
+        <Link href="/">
+          <Typography
+            component="h1"
+            sx={{ "&:hover": { cursor: "pointer" }, color: "logo.main", fontSize: {xs: 18, sm: 20}, fontWeight: 'bold',letterSpacing: 1.3,  height: 'max-content', fontFamily: 'kanit' }}
+          >
+            Gadgets World
+          </Typography>
+        </Link>
+
+        <Box sx={{ display: { xs: "none", sm: "flex" } }}>
+          {linkItems.map((item) => (
+            <Link href={`/${item}`} key={item}>
+              <Typography
+                sx={{
+                  color: isActive(item, (productCategoryId || router.pathname))
+                    ? "light.main"
+                    : "secondary.main",
+                  "&:hover": {
+                    cursor: "pointer",
+                    color: 'light.main'
+                  },
+                  px :{ sm: 0.5, lg: 1.5}, mx: 0.5, textTransform: 'capitalize'
+                }}
+              >
+                {item === 'about-us'? 'about us': item}
+              </Typography>
+            </Link>
+          ))}
+        </Box>
+
+        <Box >
           <IconButton onClick={() => {
-            push('/cart')
+            push('/search')
             setShowAccountOptions(false)
             }} sx={{color: 'secondary.main'}}>
-            <ShoppingCartRoundedIcon />
-          </IconButton> 
-          <Typography sx={{position: 'absolute', top: 0, right: 0, bgcolor: 'light.main',px: 0.5, borderRadius: '50%', fontSize: 12, color: 'dark.main'}}>
-            {cart.quantity}
-          </Typography>     
-        </Box>
-
-        <Box sx={{position: 'relative', display: 'inline-block'}}>
-          <IconButton sx={{color: 'secondary.main'}} onClick={() => setShowAccountOptions(!showAccountOptions)}>
-            {
-              data?.photoURL ?
-              <Avatar sx={{width: '28px', height: '28px'}} src={data?.photoURL} />
-              :
-              <AccountCircleRoundedIcon/>
-            }
+            <SearchRoundedIcon />
           </IconButton>
-          {showAccountOptions && 
-          <Box sx={{position: 'absolute',right: 1, width: 'max-content', boxShadow: '0 0 2px rgba(0, 0, 0, 0.2)'}}>
-            { (!loading) ?
-            <>
+          <Box sx={{position: 'relative', display: 'inline-block'}}>
+            <IconButton onClick={() => {
+              push('/cart')
+              setShowAccountOptions(false)
+              }} sx={{color: 'secondary.main'}}>
+              <ShoppingCartRoundedIcon />
+            </IconButton> 
+            <Typography sx={{position: 'absolute', top: 0, right: 0, bgcolor: 'light.main',px: 0.5, borderRadius: '50%', fontSize: 12, color: 'dark.main'}}>
+              {cart.quantity}
+            </Typography>     
+          </Box>
+
+          <Box sx={{position: 'relative', display: 'inline-block', zIndex: 3}}>
+            <IconButton sx={{color: 'secondary.main'}} onClick={() => setShowAccountOptions(!showAccountOptions)}>
               {
-              data?
-              <Box sx={{display: 'flex', flexDirection: 'column', backgroundColor: 'light.main', color: 'dark.main', borderRadius: 1}}>
-                <Button sx={{p: 1}} onClick={() => {
-                  push('/account')
-                  setShowAccountOptions(false)
-                  }}>My Account <ManageAccountsRoundedIcon fontSize={'small'} /> </Button>
-                <Button sx={{p: 1}} onClick={() => {
-                  push('/order-history')
-                  setShowAccountOptions(false)
-                  }}>Order History <HistoryRoundedIcon fontSize={'small'} /> </Button>
-                <Button color={'danger'} sx={{p: 1}} onClick={logout}>Logout <ExitToAppRoundedIcon fontSize={'small'}/></Button>
-              </Box>
-              :
-              <Button onClick={() => {
-                push('/auth')
-                setShowAccountOptions(false)
-              }} variant="contained"><LoginRoundedIcon fontSize={'small'} sx={{mr: 1}}/> Login/Signup</Button>
+                data?.photoURL ?
+                <Avatar sx={{width: '28px', height: '28px'}} src={data?.photoURL} />
+                :
+                <AccountCircleRoundedIcon/>
               }
-            </>
-            :
-            <Typography>
-              loading...
-            </Typography>
+            </IconButton>
+            {showAccountOptions && 
+            <Box sx={{position: 'absolute',right: 0, width: 'max-content', boxShadow: '0 0 2px rgba(0, 0, 0, 0.2)'}}>
+              { (!loading) ?
+              <>
+                {
+                data?
+                <Box sx={{display: 'flex', flexDirection: 'column', backgroundColor: 'light.main', color: 'dark.main', borderRadius: 1}}>
+                  <Button sx={{p: 1}} onClick={() => {
+                    push('/account')
+                    setShowAccountOptions(false)
+                    }}>My Account <ManageAccountsRoundedIcon fontSize={'small'} /> </Button>
+                  <Button sx={{p: 1}} onClick={() => {
+                    push('/order-history')
+                    setShowAccountOptions(false)
+                    }}>Order History <HistoryRoundedIcon fontSize={'small'} /> </Button>
+                  <Button color={'danger'} sx={{p: 1}} onClick={logout}>Logout <ExitToAppRoundedIcon fontSize={'small'}/></Button>
+                </Box>
+                :
+                <Button onClick={() => {
+                  push('/auth')
+                  setShowAccountOptions(false)
+                }} variant="contained"><LoginRoundedIcon fontSize={'small'} sx={{mr: 1}}/> Login</Button>
+                }
+              </>
+              :
+              <Typography>
+                loading...
+              </Typography>
+              }
+            </Box>
             }
           </Box>
-          }
+
         </Box>
 
       </Box>
+
+      {
+        router.pathname === '/search' &&
+        <Search />
+      }
       
     </Box>
   );

@@ -18,7 +18,13 @@ const Cart = ({ baseUrl }) => {
 
   return (
     <Box>
-      <Box sx={{ display: "flex", alignItems: "center", p: 1 }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          p: 1,
+        }}
+      >
         <IconButton onClick={() => back()} sx={{ mr: 2 }}>
           <ArrowBackRoundedIcon sx={{ color: "dark.main" }} />
         </IconButton>
@@ -49,11 +55,6 @@ const Cart = ({ baseUrl }) => {
       {state.products.length === 0 ? (
         <Box
           sx={{
-            position: "absolute",
-            top: 0,
-            right: 0,
-            bottom: 0,
-            left: 0,
             height: "50vh",
             width: "100%",
             display: "flex",
