@@ -1,6 +1,7 @@
 import { Typography, Box, CircularProgress } from "@mui/material";
 import ProductCard from "../../components/ProductCard";
 import useFetch from "../../hooks/useFetch";
+import formatImageUrl from "../../utils/formatImageUrl";
 
 const Category = ({ productCategoryId, baseUrl }) => {
   const { data, loading, error } = useFetch(
@@ -55,7 +56,7 @@ const Category = ({ productCategoryId, baseUrl }) => {
           ({ id, attributes: { title, price, images } }) => {
             return (
               <ProductCard
-                img_url={`http://localhost:1337${images.data[0].attributes.url}`}
+                img_url={formatImageUrl(baseUrl, images.data[0].attributes.url)}
                 title={title}
                 price={price}
                 productId={id}
