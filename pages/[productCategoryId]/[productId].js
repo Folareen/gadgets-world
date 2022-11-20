@@ -73,6 +73,7 @@ const Product = ({ baseUrl }) => {
           <SuggestedProducts
             productCategoryId={productCategoryId}
             productId={productId}
+            baseUrl={baseUrl}
           />
         </>
       )}

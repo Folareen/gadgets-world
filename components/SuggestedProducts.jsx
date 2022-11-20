@@ -1,10 +1,11 @@
 import { Box, Typography, CircularProgress } from "@mui/material"
 import useFetch from "../hooks/useFetch"
+import formatImageUrl from "../utils/formatImageUrl";
 import ProductCard from "./ProductCard";
 
-const SuggestedProducts = ({productCategoryId, productId}) => {
+const SuggestedProducts = ({productCategoryId, productId, baseUrl}) => {
   const { data, loading, error } = useFetch(
-    `http://localhost:1337/api/categories?populate[products][populate][0]=images&filters[name][$eq]=${productCategoryId}`,
+    `${baseUrl}/api/categories?populate[products][populate][0]=images&filters[name][$eq]=${productCategoryId}`,
     productCategoryId
   );
 
@@ -42,9 +43,10 @@ const SuggestedProducts = ({productCategoryId, productId}) => {
         <Box sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
             {products.map(
             ({ id, attributes: { title, price, images } }) => {
+                console.log(title, id)
                 return (
                 <ProductCard
-                    img_url={`http://localhost:1337${images.data[0].attributes.url}`}
+                    img_url={formatImageUrl(baseUrl, images.data[0].attributes.url)}
                     title={title}
                     price={price}
                     productId={id}
