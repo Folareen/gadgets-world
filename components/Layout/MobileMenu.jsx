@@ -20,7 +20,7 @@ const MobileMenu = ({setShowMobileMenu}) => (
       py: 4,
       alignItems: 'center',
       justifyContent: 'center',
-      zIndex: 2
+      zIndex: 2,
     }}
   >
     <Box>

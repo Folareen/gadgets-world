@@ -50,7 +50,7 @@ const Header = () => {
         justifyContent: "space-between",
         alignItems: 'center',
         position: 'relative',
-        zIndex: 2
+        zIndex: 3
       }}
     >
       
