@@ -1,12 +1,14 @@
 import { Box } from "@mui/material";
-import Banner from "../components/Banner";
+import BottomBanner from "../components/BottomBanner";
+import TopBanner from "../components/TopBanner";
 import TrendingProducts from "../components/TrendingProducts";
 
 const Home = ({ trendingProducts, baseUrl }) => {
   return (
     <Box sx={{ pb: 2 }}>
-      <Banner />
+      <TopBanner />
       <TrendingProducts trendingProducts={trendingProducts} baseUrl={baseUrl} />
+      <BottomBanner />
     </Box>
   );
 };
