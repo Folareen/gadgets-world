@@ -40,7 +40,7 @@ const BottomBanner = () => {
         <HighlightedText title="quality gadgets" />
         <NormalText title="at" />
         <HighlightedText title="affordable prices" />
-        <NormalText title="and get them delivered to your doorsteps" />
+        <NormalText title="and get them delivered to your doorstep" />
 
         <Button variant='contained' onClick={() => push('/products')} sx={{width: 'max-content', px: 4, py: 1, mx: 'auto', mt: 2, display: 'flex', alignItems: 'center'}}>
             Start Shopping <ShoppingCartCheckoutRoundedIcon fontSize="small" sx={{ml: 1}} />
