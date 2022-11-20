@@ -1,2 +1,2 @@
-const linkItems = ["laptops", "phones", "accessories"];
+const linkItems = ["products", "laptops", "phones", "accessories", "about-us"];
 export default linkItems;
