@@ -5,15 +5,15 @@ const ProductDetails = ({productDetails: {title, description, price}, image, pro
   return (
     <Box sx={{flex: 1, p: 2}}>
 
-        <Typography sx={{color: 'primary.main', fontSize: 24, mb: 4, textTransform: 'capitalize', fontWeight: 'bold'}}>
+        <Typography sx={{color: 'primary.main', fontSize: 24, mb: {sm: 4, xs: 2}, textTransform: 'capitalize', fontWeight: 'bold'}}>
             {title}
         </Typography >
 
-        <Typography sx={{color: 'dark.main', fontSize: 18, mb: 4}}>
+        <Typography sx={{color: 'dark.main', fontSize: {md: 18, xs: 16}, mb: {sm: 4, xs: 2}}}>
             {description}
         </Typography>
 
-        <Typography sx={{color: 'primary.main', fontSize: 24, mb: 4,}}>
+        <Typography sx={{color: 'primary.main', fontSize: 24, mb: {sm: 4, xs: 2}}}>
             ${price}
         </Typography>
 

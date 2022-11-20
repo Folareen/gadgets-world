@@ -43,7 +43,7 @@ const Layout = ({ children }) => {
       sx={{
         bgcolor: "light.light",
         minHeight: "100vh",
-        pb: 6,
+        pb: 48,
         position: "relative",
       }}
     >
@@ -54,6 +54,7 @@ const Layout = ({ children }) => {
           content="Best ecommerce store to shop gadgets"
         />
         <link rel="icon" href="/microchip-solid.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Header />
       <ToastContainer />

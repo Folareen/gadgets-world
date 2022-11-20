@@ -34,23 +34,12 @@ const Category = ({ productCategoryId, baseUrl }) => {
     );
   }
 
-  if (error)
+  if (error) {
     <Typography sx={{ color: "danger.main" }}>Error Occurred...</Typography>;
+  }
 
   return (
     <>
-      <Typography
-        sx={{
-          fontSize: 20,
-          mt: 2,
-          textTransform: "capitalize",
-          color: "dark.main",
-          textAlign: "center",
-        }}
-      >
-        {products.attributes.name}
-      </Typography>
-
       <Box sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
         {products.attributes.products.data.map(
           ({ id, attributes: { title, price, images } }) => {

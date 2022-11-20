@@ -1,13 +1,15 @@
 import { useRouter } from "next/router";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, CircularProgress, IconButton, Typography } from "@mui/material";
 import ProductGallery from "../../components/ProductGallery";
 import ProductDetails from "../../components/ProductDetails";
 import SuggestedProducts from "../../components/SuggestedProducts";
 import useFetch from "../../hooks/useFetch";
+import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 
 const Product = ({ baseUrl }) => {
   const {
     query: { productId, productCategoryId },
+    back,
   } = useRouter();
 
   const { data, loading, error } = useFetch(
@@ -17,31 +19,47 @@ const Product = ({ baseUrl }) => {
 
   if (loading) {
     return (
-      <Box
-        sx={{
-          width: "100%",
-          position: "absolute",
-          top: 0,
-          bottom: 0,
-          minHeight: "100vh",
-          left: 0,
-          right: 0,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <CircularProgress />
-      </Box>
+      <>
+        <IconButton onClick={() => back()} sx={{ mr: 2 }}>
+          <ArrowBackRoundedIcon sx={{ color: "dark.main" }} />
+        </IconButton>
+        <Box
+          sx={{
+            width: "100%",
+            position: "absolute",
+            top: 0,
+            bottom: 0,
+            minHeight: "100vh",
+            left: 0,
+            right: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      </>
     );
   }
 
-  if (error) return <Typography>Error occurred</Typography>;
+  if (error)
+    return (
+      <>
+        <IconButton onClick={() => back()} sx={{ ml: 2 }}>
+          <ArrowBackRoundedIcon sx={{ color: "dark.main" }} />
+        </IconButton>
+        <Typography sx={{ color: "danger.main" }}>Error occurred</Typography>
+      </>
+    );
 
   return (
     <>
       {data && (
         <>
+          <IconButton onClick={() => back()} sx={{ ml: 2 }}>
+            <ArrowBackRoundedIcon sx={{ color: "dark.main" }} />
+          </IconButton>
           <Box
             sx={{
               display: "flex",

@@ -4,9 +4,9 @@ import ProductCard from "./ProductCard"
 
 const TrendingProducts = ({trendingProducts, baseUrl}) => {
   return (
-    <Box sx={{textAlign: 'center', mt: 5}}>
+    <Box sx={{ mt: 5}}>
 
-        <Typography sx={{fontSize: 26, color: 'dark.main'}}>
+        <Typography sx={{fontSize: 26, color: 'dark.main', textAlign: 'center'}}>
             Trending Gadgets
         </Typography>
 
@@ -15,10 +15,10 @@ const TrendingProducts = ({trendingProducts, baseUrl}) => {
                 ({attributes}) => {
                     return(
                         <Box key={attributes.name}>
-                            <Typography sx={{fontSize: 20, mt: 2, textTransform: 'capitalize', color: 'dark.main' }}>
+                            <Typography sx={{fontSize: 20, mt: 2, textTransform: 'capitalize', color: 'dark.main', textAlign: {xs: 'left', md: 'center'}, mx:{md: 2, xs: 1.5} }}>
                                 {attributes.name}
                             </Typography>
-                            <Box sx={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
+                            <Box sx={{display: 'flex', overflowX: 'auto', width: '100%', justifyContent: {md: 'center'}}}>
                             {
                                 attributes.products.data.slice(0, 3).map(
                                     ({id, attributes: {title, price, images }}) => {
