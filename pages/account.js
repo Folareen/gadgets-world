@@ -11,7 +11,7 @@ const Account = () => {
     if (!data) {
       replace("/auth");
     }
-  }, []);
+  }, [data]);
 
   return <Typography>Coming soon...</Typography>;
 };

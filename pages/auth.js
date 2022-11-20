@@ -24,7 +24,7 @@ const Auth = () => {
     if (data) {
       replace("/");
     }
-  }, []);
+  }, [data]);
 
   return (
     <Box
