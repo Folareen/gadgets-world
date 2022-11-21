@@ -43,7 +43,7 @@ const Layout = ({ children }) => {
       sx={{
         bgcolor: "light.light",
         minHeight: "100vh",
-        pb: 48,
+        pb: { sm: 25, xs: 45 },
         position: "relative",
       }}
     >

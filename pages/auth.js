@@ -33,13 +33,7 @@ const Auth = () => {
         alignItems: "center",
         justifyContent: "center",
         width: "100%",
-        position: "absolute",
-        top: 0,
-        bottom: 0,
-        minHeight: "100vh",
-        left: 0,
-        right: 0,
-        zIndex: 1,
+        my: 4,
       }}
     >
       <Box sx={{ width: "85%", maxWidth: 400 }}>

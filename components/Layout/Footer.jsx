@@ -7,12 +7,12 @@ const Footer = () => {
   return (
     <Paper component='footer' sx={{position: 'absolute', bottom: 0, textAlign: 'center', width: '100%', backgroundColor: '#1D566E', p: 2}} elevation={8}>
 
-      <Box sx={{display: 'flex', justifyContent: {xs: 'center', md: 'space-between'}, my: 1, width: '90%', maxWidth: '1000px', mx: 'auto', flexWrap: 'wrap'}}>
+      <Box sx={{display: 'flex', justifyContent: {xs: 'flex-start', md: 'space-between'}, my: 1, width: '90%', maxWidth: '1000px', mx: 'auto', flexWrap: 'wrap'}}>
 
-        <Box>
-          <Typography sx={{color: 'logo.main', textAlign: 'center', fontSize: 18, display: 'flex'}} >
-              Gadgets World <Typography sx={{ml: 1, color: 'light.main'}}>&copy; 2022</Typography>
-          </Typography>
+        <Box sx={{mx: {xs: 'auto', md: 0}}}>
+          <Box sx={{color: 'logo.main', textAlign: 'center', fontSize: 18, display: 'flex', justifyContent: 'center'}} >
+              Gadgets World <Typography sx={{ml: 1, color: 'light.main'}} componennt="span">&copy; 2022</Typography>
+          </Box>
           <Typography sx={{color: 'light.main'}}>
               Built by 
               <Link href="https://twitter.com/_folareen_" sx={{ml: 0.5, color: 'secondary.main', textDecoration: 'underline'}}>
@@ -24,8 +24,8 @@ const Footer = () => {
         </Box>
 
 
-        <Box sx={{fontSize: 16, color: 'light.light' , textAlign: 'left', my: {xs: 4, md: 0}}}>
-          <Typography sx={{fontSize: 18, textAlign: 'center', color: 'light.main'}}>
+        <Box sx={{fontSize: 16, color: 'light.light' , textAlign: 'left', my: {xs: 4, sm: 0}, mx: {sm: 2}}}>
+          <Typography sx={{fontSize: 18, textAlign: {xs: 'left', sm: 'center'}, color: 'light.main'}}>
             Contact us
           </Typography>
           <Typography sx={{display: 'flex', alignItems: 'center', width: 'max-content'}}>
@@ -40,7 +40,7 @@ const Footer = () => {
         </Box>
 
         <Box sx={{fontSize: 16, color: 'light.light' , textAlign: 'left'}}>
-          <Typography sx={{fontSize: 18, textAlign: 'center', color: 'light.main'}}>
+          <Typography sx={{fontSize: 18, textAlign: {xs: 'left', sm: 'center'}, color: 'light.main'}}>
             Support
           </Typography>
           <Typography>

@@ -25,7 +25,7 @@ const BottomBanner = () => {
         width: '90%',
         mx: 'auto',
         maxWidth: '1000px',
-        height: '40vh',
+        height: '45vh',
         display: 'flex',
         flexDirection: {xs: 'column', md: 'row'},
         alignItems: 'center', justifyContent: 'space-between', backgroundColor: 'light.main', boxShadow: '0 0 4px rgba(0, 0, 0, 0.1)',
