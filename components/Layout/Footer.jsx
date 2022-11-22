@@ -3,9 +3,21 @@ import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
 import CallRoundedIcon from '@mui/icons-material/CallRounded';
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 
+const Heading = ({title}) => (
+  <Typography sx={{fontSize: 18, textAlign: {xs: 'left', sm: 'center'}, color: 'light.main'}}>
+    {title}
+  </Typography>
+)
+
+const Text = ({children}) => (
+  <Typography sx={{fontSize: {xs: 14, md: 16}, display: 'flex', alignItems: 'center'}}>
+    {children}
+  </Typography>
+)
+
 const Footer = () => {
   return (
-    <Paper component='footer' sx={{position: 'absolute', bottom: 0, textAlign: 'center', width: '100%', backgroundColor: '#1D566E', p: 2}} elevation={8}>
+    <Paper component='footer' sx={{position: 'absolute', bottom: 0, textAlign: 'center', width: '100%', backgroundColor: '#1D566E', p: 2}} elevation={4}>
 
       <Box sx={{display: 'flex', justifyContent: {xs: 'flex-start', md: 'space-between'}, my: 1, width: '90%', maxWidth: '1000px', mx: 'auto', flexWrap: 'wrap'}}>
 
@@ -25,30 +37,23 @@ const Footer = () => {
 
 
         <Box sx={{fontSize: 16, color: 'light.light' , textAlign: 'left', my: {xs: 4, sm: 0}, mx: {sm: 2}}}>
-          <Typography sx={{fontSize: 18, textAlign: {xs: 'left', sm: 'center'}, color: 'light.main'}}>
-            Contact us
-          </Typography>
-          <Typography sx={{display: 'flex', alignItems: 'center', width: 'max-content'}}>
+          <Heading title="Contact us" />
+          <Text>
             <LocationOnRoundedIcon sx={{mr: 1}} fontSize="small" /> 1, lorem street,ipsum,Nigeria
-          </Typography>
-          <Typography sx={{display: 'flex', alignItems: 'center', width: 'max-content'}}>
+          </Text>
+          <Text>
             <CallRoundedIcon sx={{mr: 1}} fontSize="small" /> +2348060127619
-          </Typography>
-          <Typography sx={{display: 'flex', alignItems: 'center', width: 'max-content'}}>
+          </Text>
+          <Text>
             <EmailRoundedIcon sx={{mr: 1}} fontSize="small" /> supportlorem@gadgetsworld.com
-          </Typography>
+          </Text>
         </Box>
 
-        <Box sx={{fontSize: 16, color: 'light.light' , textAlign: 'left'}}>
-          <Typography sx={{fontSize: 18, textAlign: {xs: 'left', sm: 'center'}, color: 'light.main'}}>
-            Support
-          </Typography>
-          <Typography>
-            FAQ
-          </Typography>
-          <Typography>
-            Feedback and complaints
-          </Typography>
+        <Box sx={{fontSize: 12, color: 'light.light' , textAlign: 'left'}}>
+          <Heading title="Support" />
+          {
+            ['FAQ', 'Feedback and complains', 'lorem ipsum' ].map((text) => (<Text>{text}</Text>))
+          }
         </Box>
 
       </Box>
