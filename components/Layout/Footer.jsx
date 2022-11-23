@@ -52,7 +52,7 @@ const Footer = () => {
         <Box sx={{fontSize: 12, color: 'light.light' , textAlign: 'left'}}>
           <Heading title="Support" />
           {
-            ['FAQ', 'Feedback and complains', 'lorem ipsum' ].map((text) => (<Text>{text}</Text>))
+            ['FAQ', 'Feedback and complains', 'lorem ipsum' ].map((text) => (<Text key={text}>{text}</Text>))
           }
         </Box>
 
