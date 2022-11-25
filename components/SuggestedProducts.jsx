@@ -43,7 +43,6 @@ const SuggestedProducts = ({productCategoryId, productId, baseUrl}) => {
         <Box sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
             {products.map(
             ({ id, attributes: { title, price, images } }) => {
-                console.log(title, id)
                 return (
                 <ProductCard
                     img_url={formatImageUrl(baseUrl, images.data[0].attributes.url)}
