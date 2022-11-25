@@ -27,7 +27,7 @@ const Search = () => {
     );
   }
 
-  if (searchData) {
+  if (searchData.length) {
     return (
       <Box sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
         {searchData.map(
@@ -51,7 +51,11 @@ const Search = () => {
     );
   }
 
-  return <Typography>no product found</Typography>;
+  return (
+    <Typography sx={{ color: "dark.main", fontStyle: "italic" }}>
+      No product found...
+    </Typography>
+  );
 };
 
 export default Search;
