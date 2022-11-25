@@ -41,7 +41,7 @@ const Search = () => {
                 title={title}
                 price={price}
                 productId={id}
-                categoryId={category}
+                categoryId={category.data.attributes.name}
                 key={id}
               />
             );
