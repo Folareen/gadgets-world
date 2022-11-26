@@ -58,13 +58,13 @@ const Header = () => {
 
       <Box sx={{display: "flex",
         justifyContent: "space-between",
-        alignItems: 'center',}}>
+        alignItems: 'center'}}>
 
         <MobileMenu setShowMobileMenu={setShowMobileMenu} showMobileMenu={showMobileMenu} />
 
         <IconButton
           onClick={() => setShowMobileMenu((prev) => !prev)}
-          sx={{color: 'secondary.main',  display: { xs: "block", sm: "none" }, zIndex: 3}}
+          sx={{color: 'secondary.main',  display: { xs: "flex", sm: "none" }, zIndex: 3, alignItems: 'center', justifyContent: 'center'}}
         >
           {!showMobileMenu ? <MenuIcon /> : <CloseIcon />}
         </IconButton>
@@ -72,7 +72,7 @@ const Header = () => {
         <Link href="/">
           <Typography
             component="h1"
-            sx={{ "&:hover": { cursor: "pointer" }, color: "logo.main", fontSize: {xs: 18, sm: 20}, fontWeight: 'bold',letterSpacing: 1.3,  height: 'max-content', fontFamily: 'kanit' }}
+            sx={{ "&:hover": { cursor: "pointer" }, color: "logo.main", fontSize: {xs: 18, sm: 20}, fontWeight: 'bold',letterSpacing: 1.3, lineHeight: 1, fontFamily: 'kanit' }}
           >
             Gadgets World
           </Typography>
