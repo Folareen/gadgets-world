@@ -17,7 +17,7 @@ const Text = ({children}) => (
 
 const Footer = () => {
   return (
-    <Paper component='footer' sx={{position: 'absolute', bottom: 0, textAlign: 'center', width: '100%', backgroundColor: '#1D566E', p: 2}} elevation={4}>
+    <Paper component='footer' sx={{position: 'absolute', bottom: 0, textAlign: 'center', width: '100%', backgroundColor: '#1D566E', p: 2, borderRadius: 0}} elevation={4}>
 
       <Box sx={{display: 'flex', justifyContent: {xs: 'flex-start', md: 'space-between'}, my: 1, width: '90%', maxWidth: '1000px', mx: 'auto', flexWrap: 'wrap'}}>
 
